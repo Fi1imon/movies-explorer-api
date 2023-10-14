@@ -26,7 +26,13 @@ module.exports.updateUser = (req, res, next) => {
 
   User.findByIdAndUpdate(userId, { email, name }, { new: true, runValidators: true })
     .then((user) => res.send(user))
-    .catch(next);
+    .catch((err) => {
+      if (err.code === 11000) {
+        next(new Conflict({ message: 'Пользователь с таким email уже существует.' }));
+        return;
+      }
+      next(err);
+    });
 };
 
 module.exports.createUser = (req, res, next) => {
@@ -73,13 +79,14 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logout = (req, res, next) => {
+module.exports.logout = (req, res) => {
   res.clearCookie('jwt', {
     maxAge: 3600000,
     httpOnly: true,
   });
 
-  res.status(200).send({ message: 'Успешно' });
-
-  next();
+  res
+    .status(200)
+    .send({ message: 'Успешно' })
+    .end();
 };
