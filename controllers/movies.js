@@ -55,7 +55,7 @@ module.exports.removeMovie = (req, res, next) => {
         throw new NotFoundError({ message: 'Фильм с указанным id не найден.' });
       }
 
-      Movie.findOneAndDelete({ movieId })
+      Movie.findOneAndDelete({ movieId, owner: _id })
         .then(() => res.send({ message: 'Фильм успешно удален' }))
         .catch((err) => {
           if (err.name === 'CastError') {

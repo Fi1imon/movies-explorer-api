@@ -14,7 +14,7 @@ const helmet = require('helmet');
 
 const { celebrate, errors } = require('celebrate');
 
-const { createUser, login, logout } = require('./controllers/users');
+const { createUser, login } = require('./controllers/users');
 
 const { auth } = require('./middlewares/auth');
 
@@ -49,9 +49,7 @@ app.post('/signin', celebrate({ body: signin }), login);
 
 app.use(auth);
 
-app.post('/signout', logout);
-app.use('/users', require('./routes/user'));
-app.use('/movies', require('./routes/movie'));
+app.use('', require('./routes/index'));
 
 app.use((req, res, next) => {
   next(new NotFoundError({ message: 'Страница не найдена.' }));
