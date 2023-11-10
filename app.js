@@ -14,6 +14,8 @@ const helmet = require('helmet');
 
 const { celebrate, errors } = require('celebrate');
 
+const { checkCors } = require('./middlewares/cors');
+
 const { createUser, login } = require('./controllers/users');
 
 const { auth } = require('./middlewares/auth');
@@ -35,6 +37,8 @@ mongoose.connect(DB_CONN);
 app.listen(PORT, () => {});
 
 app.use(bodyParser.json());
+
+app.use(checkCors);
 
 app.use(cookieParser());
 
