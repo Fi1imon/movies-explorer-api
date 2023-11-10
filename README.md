@@ -1,1 +1,1 @@
-# movies-explorer-api
+Адрес домена: https://api.movies.fi1imon.nomoredomainsrocks.ru
