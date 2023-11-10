@@ -70,10 +70,12 @@ module.exports.login = (req, res, next) => {
         { expiresIn: '7d' },
       );
 
-      res.cookie('jwt', token, {
-        maxAge: 3600000,
-        httpOnly: true,
-      })
+      res
+        .cookie('jwt', token, {
+          maxAge: 3600000,
+          httpOnly: true,
+        })
+        .send({ message: 'Успешно' })
         .end();
     })
     .catch(next);
