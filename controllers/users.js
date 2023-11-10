@@ -72,11 +72,9 @@ module.exports.login = (req, res, next) => {
 
       res
         .cookie('jwt', token, {
-          maxAge: 3600000,
+          maxAge: 60 * 60 * 24 * 7,
           httpOnly: true,
-        })
-        .send({ message: 'Успешно' })
-        .end();
+        });
     })
     .catch(next);
 };
