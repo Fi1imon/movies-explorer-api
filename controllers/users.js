@@ -74,14 +74,16 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 60 * 60 * 24 * 7,
           httpOnly: true,
-        });
+        })
+        .send({ message: 'Успешно' })
+        .end();
     })
     .catch(next);
 };
 
 module.exports.logout = (req, res) => {
   res.clearCookie('jwt', {
-    maxAge: 3600000,
+    maxAge: 60 * 60 * 24 * 7,
     httpOnly: true,
   });
 
