@@ -75,6 +75,7 @@ module.exports.login = (req, res, next) => {
           maxAge: 60 * 60 * 24 * 7,
           httpOnly: true,
           sameSite: 'None',
+          secure: true,
         })
         .send({ message: 'Успешно' })
         .end();
@@ -87,6 +88,7 @@ module.exports.logout = (req, res) => {
     maxAge: 60 * 60 * 24 * 7,
     httpOnly: true,
     sameSite: 'None',
+    secure: true,
   });
 
   res
