@@ -1,8 +1,6 @@
 const allowedCors = [
-  'https://mesto.fi1imon.nomoredomainsicu.ru',
-  'https://mesto.fi1imon.nomoredomainsicu.ru/',
-  'http://localhost:3000/',
-  'http://localhost:3000',
+  'https://movies.fi1imon.nomoredomainsmonster.ru/',
+  'https://movies.fi1imon.nomoredomainsmonster.ru',
 ];
 
 const checkCors = (req, res, next) => {
