@@ -34,7 +34,9 @@ module.exports.createMovie = (req, res, next) => {
     nameEN,
   })
     .then((movie) => {
-      res.status(201).send(movie);
+      movie.populate('owner')
+        .then((resultMovie) => res.status(201).send(resultMovie))
+        .catch((err) => next(err));
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
