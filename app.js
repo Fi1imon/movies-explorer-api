@@ -48,12 +48,12 @@ app.use(requestLogger);
 
 app.use(rateLimiter);
 
-app.post('/api/signup', celebrate({ body: signup }), createUser);
-app.post('/api/signin', celebrate({ body: signin }), login);
+app.post('/signup', celebrate({ body: signup }), createUser);
+app.post('/signin', celebrate({ body: signin }), login);
 
 app.use(auth);
 
-app.use('/api', require('./routes/index'));
+app.use('', require('./routes/index'));
 
 app.use((req, res, next) => {
   next(new NotFoundError({ message: 'Страница не найдена.' }));
